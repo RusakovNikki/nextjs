@@ -1,17 +1,26 @@
-"use client";
-import { usePathname, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
+import Product from "./Product";
 
-const Products = () => {
-  const { push } = useRouter();
-  const pathName = usePathname();
-
-  return (
-    <div>
-      <div>Products</div>
-      <div>Текущая страница ${pathName}</div>
-      <button onClick={() => push("/")}>Redirect to Home page</button>
-    </div>
-  );
+const fetchData = async () => {
+  try {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/todos/1"
+    );
+    if (!response.ok) throw new Error("Network response was not ok");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
 };
 
-export default Products;
+const Page = async () => {
+  const data = await fetchData();
+  console.log(data);
+
+  if (!data) notFound();
+
+  return <Product />;
+};
+
+export default Page;
