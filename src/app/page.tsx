@@ -25,7 +25,7 @@ export default function Home() {
           <Link className={styles.primary} href="/products">
             <Image
               className={styles.logo}
-              src="/vercel.svg"
+              src="/globe.svg"
               alt="Vercel logomark"
               width={20}
               height={20}
