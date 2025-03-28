@@ -1,7 +1,12 @@
 "use client";
 
-const Error = () => {
-  return <div>Error</div>;
+interface IErrorProps {
+  error: Error;
+}
+
+const Error = (props: IErrorProps) => {
+  const { error } = props;
+  return <div>Error: ${JSON.stringify(error)}</div>;
 };
 
 export default Error;
