@@ -1,0 +1,407 @@
+@font-face {
+  font-family: "Formular";
+  src: url("../fonts/Formular.woff");
+}
+
+@font-face {
+  font-family: "Rubik-light";
+  src: url("../fonts/Rubik-Light.woff");
+}
+@font-face {
+  font-family: "Rubik-regular";
+  src: url("../fonts/Rubik-Regular.woff");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 1196px;
+  margin: 0 auto;
+
+  @media (max-width: 450px) {
+    width: 272px;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+.jobs-container {
+  &__item {
+    width: 1196px;
+    display: flex;
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    @media (max-width: 450px) {
+      width: inherit;
+      flex-direction: column;
+    }
+  }
+
+  &__item:last-child {
+    margin-bottom: 0;
+  }
+  &__logo-container {
+    width: 446px;
+    height: 126px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-right: 20px;
+    margin-bottom: 24px;
+
+    @media (max-width: 450px) {
+      width: 232px;
+      height: 59px;
+      margin-bottom: 38px;
+    }
+  }
+  &__logo {
+    height: inherit;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 160%;
+    /* or 51px */
+
+    color: #000000;
+
+    @media (max-width: 450px) {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__specifics {
+    font-size: 16px;
+    line-height: 140%;
+    overflow: hidden;
+
+    color: #000000;
+  }
+
+  &__specifics--height {
+    height: 200px;
+  }
+
+  &__more-btn {
+    font-size: 16px;
+    line-height: 140%;
+    margin-top: 8px;
+    /* or 22px */
+
+    text-align: center;
+
+    color: #a3a6a9;
+    cursor: pointer;
+  }
+
+  &__desc {
+    background: rgb(255, 255, 255);
+  }
+  &__flex-item {
+    @media (max-width: 450px) {
+      margin-top: 16px;
+    }
+  }
+}
+
+.header {
+  width: inherit;
+  min-height: 304px;
+  border: 1px solid transparent;
+  margin-bottom: 30px;
+
+  &__title {
+    margin-top: 81px;
+    margin-bottom: 74px;
+
+    &-clear {
+      font-size: 16px;
+      line-height: 160%;
+      margin-top: 36px;
+      margin-left: 120px;
+      display: inline-block;
+      cursor: pointer;
+      color: #a3a6a9;
+
+      @media (max-width: 450px) {
+        margin-top: 0;
+        margin-left: 0;
+      }
+    }
+  }
+  &__clear {
+    position: relative;
+  }
+  &__close-btn {
+    position: absolute;
+    right: -24px;
+    top: 40px;
+    cursor: pointer;
+
+    @media (max-width: 450px) {
+      right: 150px;
+      top: 4px;
+    }
+  }
+
+  &__ul {
+    margin-top: 15px;
+    border: 1px solid black;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__ul li {
+    display: block;
+    width: inherit;
+    padding: 15px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  &__show-btn {
+    position: absolute;
+    right: 0;
+    top: 39px;
+    cursor: pointer;
+
+    &--rotate {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.rubik-light {
+  font-family: "Rubik-light";
+}
+.rubik-regular {
+  font-family: "Rubik-regular";
+}
+.formular {
+  font-family: "Formular";
+}
+.roboto {
+  font-family: "Roboto";
+}
+
+.title {
+  font-size: 64px;
+  line-height: 76px;
+  /* identical to box height */
+
+  /* Black */
+
+  color: #000000;
+
+  @media (max-width: 450px) {
+    font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 38px;
+  }
+}
+
+.form-item {
+  width: 466px;
+  height: 67px;
+  border-bottom: 1px solid black;
+  @media (max-width: 450px) {
+    width: 272px;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  &__field {
+    font-family: "Rubik-light";
+    border: none;
+    width: inherit;
+    font-size: 16px;
+    line-height: 160%;
+    color: #a3a6a9;
+    margin-top: 7px;
+  }
+  &__field:focus {
+    outline: none;
+  }
+}
+
+.sortby {
+  display: flex;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+}
+
+.sortby__form {
+  position: relative;
+  margin-right: 20px;
+}
+
+.about {
+  &__type {
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 140%;
+    /* or 22px */
+
+    /* Dark grey */
+
+    color: #545454;
+  }
+
+  &__desc {
+    color: #000000;
+  }
+
+  &__type:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.footer {
+  margin-top: 90px;
+  margin-bottom: 164px;
+
+  @media (max-width: 450px) {
+    margin-top: 64px;
+    margin-bottom: 94px;
+  }
+
+  &__title {
+    margin-bottom: 74px;
+
+    @media (max-width: 450px) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__form {
+    width: 438px;
+    margin-bottom: 29px;
+
+    @media (max-width: 450px) {
+      width: 272px;
+    }
+  }
+
+  &__flex-container {
+    display: flex;
+    @media (max-width: 450px) {
+      flex-direction: column;
+    }
+  }
+
+  &__flex-item--margin {
+    margin-right: 292px;
+  }
+
+  &__buttom {
+    margin-top: 3px;
+  }
+
+  &__confirm-message {
+    width: 389px;
+    font-size: 14px;
+    line-height: 160%;
+    margin-top: 43px;
+    @media (max-width: 450px) {
+      width: 283px;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    border-bottom: 2px dashed black;
+  }
+}
+
+.about-company {
+  &__message {
+    font-size: 18px;
+    line-height: 160%;
+    width: 307px;
+    margin-bottom: 74px;
+
+    @media (max-width: 450px) {
+      margin-top: 32px;
+      width: 271px;
+    }
+  }
+
+  &__phone {
+    font-size: 32px;
+    line-height: 24px;
+    margin-bottom: 8px;
+
+    @media (max-width: 450px) {
+      margin-top: 33px;
+      font-size: 22px;
+    }
+  }
+
+  &__mail {
+    font-size: 32px;
+    line-height: 32px;
+    margin-bottom: 78px;
+
+    @media (max-width: 450px) {
+      margin-top: 10px;
+      font-size: 22px;
+    }
+  }
+
+  &__adres {
+    font-size: 16px;
+    line-height: 160%;
+    width: 275px;
+    margin-bottom: 5px;
+  }
+
+  &__route {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.button {
+  width: 226px;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: center;
+  color: #ffffff;
+  padding: 11px;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.notfound-container {
+  text-align: center;
+  &__smile {
+    font-size: 50px;
+  }
+}
