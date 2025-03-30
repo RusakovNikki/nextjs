@@ -1,16 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "./components/Header";
+import FooterRequestForm from "./components/FooterRequestForm";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,23 +15,47 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <header
-          style={{
-            backgroundColor: "lightblue",
-            padding: "1rem",
-          }}
-        >
-          <p>Header</p>
-        </header>
+      <body className="container">
+        <Header />
         {children}
-        <footer
-          style={{
-            backgroundColor: "ghostwhite",
-            padding: "1rem",
-          }}
-        >
-          <p>Footer</p>
+        <footer className="footer">
+          <div className="footer__title title rubik-light">Leave a request</div>
+          <div className="footer__flex-container">
+            <div className="footer__flex-item footer__flex-item--margin">
+              <FooterRequestForm />
+              <div className="footer__confirm-message rubik-regular">
+                By clicking &quot;Send&quot; you confirm your consent to the{" "}
+                <a href="#" className="footer__link">
+                  processing of personal data
+                </a>
+              </div>
+            </div>
+            <div className="footer__flex-item">
+              <div className="about-company rubik-regular">
+                <div className="about-company__message">
+                  We will advise you and help you start a new project
+                </div>
+                <div className="about-company__phone">
+                  <a href="tel:+74993916669">+7 499 391-66-69</a>
+                </div>
+                <div className="about-company__mail">
+                  <a href="mailto:mail@greensight.ru">mail@greensight.ru</a>
+                </div>
+                <div className="about-company__adres">
+                  Moscow, Zelenograd, Central Ave., bldg. 305, 3rd floor
+                </div>
+                <div className="about-company__route">
+                  <a
+                    href="https://goo.gl/maps/N2EVxAnkKmJN4Uj87"
+                    target="_blank"
+                  >
+                    How to get
+                  </a>
+                  there?
+                </div>
+              </div>
+            </div>
+          </div>
         </footer>
       </body>
     </html>
