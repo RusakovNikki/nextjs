@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import Header from "./components/Header";
-import FooterRequestForm from "./components/FooterRequestForm";
+import FooterRequestForm from "../components/FooterRequestForm";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="container">
-        <Header />
+        <header className="header">
+          <h1 className="title header__title rubik-light">List of vacancies</h1>
+        </header>
         {children}
         <footer className="footer">
           <div className="footer__title title rubik-light">Leave a request</div>
