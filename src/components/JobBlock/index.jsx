@@ -1,16 +1,17 @@
-import Parser from "html-react-parser"
+import Parser from "html-react-parser";
 
-import preview from "/public/preview_company.svg"
-import { useState } from "react"
-import useProducts from "@/hooks/useProducts"
+import preview from "/public/preview_company.svg";
+import { useState } from "react";
+import useProducts from "@/hooks/useProducts";
 
 const JobBlock = ({ id }) => {
-  const [showMoreDesc, setShowMoreDesc] = useState(true)
+  const [showMoreDesc, setShowMoreDesc] = useState(true);
 
-  const URL_EMPLOYER = `https://api.hh.ru/vacancies/${id}`
-  const [item] = useProducts(URL_EMPLOYER)
+  const URL_EMPLOYER = `https://api.hh.ru/vacancies/${id}`;
+  
+  const [item] = useProducts(URL_EMPLOYER);
 
-  const { employer, schedule, area, name, description, alternate_url } = item
+  const { employer, schedule, area, name, description, alternate_url } = item;
 
   return (
     <>
@@ -70,7 +71,7 @@ const JobBlock = ({ id }) => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default JobBlock
+export default JobBlock;
