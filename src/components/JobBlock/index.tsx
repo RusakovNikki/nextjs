@@ -5,7 +5,7 @@ import { IVacancy } from "@/interfaces/vacancy";
 import preview from "/public/preview_company.svg";
 import { useState } from "react";
 import { useGetVacancyQuery } from "@/store/api/headHunter";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 
 interface IJobBlockWithVacancyProps {
   vacancy: IVacancy;
@@ -22,11 +22,16 @@ type TJobBlockProps = IJobBlockWithVacancyProps | IJobBlockWithVacancyIdProps;
 const JobBlock = (props: TJobBlockProps) => {
   const { vacancy, vacancyId } = props;
 
-  const { data: vacancyRequestData } = useGetVacancyQuery(vacancyId!, {
-    skip: !vacancyId && Boolean(vacancy),
-  });
+  const { data: vacancyRequestData, isLoading } = useGetVacancyQuery(
+    vacancyId!,
+    {
+      skip: !vacancyId && Boolean(vacancy),
+    }
+  );
 
   const vacancyData = vacancy || vacancyRequestData;
+
+  if (!vacancyData && !isLoading) return notFound();
 
   const [showMoreDesc, setShowMoreDesc] = useState(true);
 

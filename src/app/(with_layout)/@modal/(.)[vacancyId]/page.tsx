@@ -9,7 +9,7 @@ interface VacancyPage {
 const ModalVacancyPage = async (props: VacancyPage) => {
   const { vacancyId } = await props.params;
 
-  if (!vacancyId) {
+  if (!vacancyId || !Number(vacancyId)) {
     return notFound();
   }
 
