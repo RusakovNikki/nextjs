@@ -1,9 +1,11 @@
+"use client";
+
 import { JSX, useEffect } from "react";
 import styles from "./style.module.scss";
 
 interface IModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   children: JSX.Element;
 }
 
@@ -27,9 +29,12 @@ const Modal = (props: IModalProps) => {
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
-          ×
-        </button>
+        {onClose && (
+          <button className={styles.closeButton} onClick={onClose}>
+            ×
+          </button>
+        )}
+
         {children}
       </div>
     </div>
