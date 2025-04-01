@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import btnDown from "/public/down-btn.svg";
+import Image from "next/image";
 
 interface ISortForm {
   sortByType: {
@@ -41,7 +42,7 @@ const SortForm = (props: ISortForm) => {
           positionForm ? "header__show-btn--rotate" : ""
         }`}
       >
-        <img src={btnDown} alt="" />
+        <Image src={btnDown} alt="" />
       </div>
       {positionForm && (
         <ul
