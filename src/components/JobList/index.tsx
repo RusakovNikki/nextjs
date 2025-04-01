@@ -9,15 +9,19 @@ import Image from "next/image";
 import { useGetVacationsQuery } from "@/store/api/headHunter";
 import JobBlock from "../JobBlock";
 
+const PER_PAGE = 10;
+
 const JobList = () => {
+  const [page, setPage] = useState(1);
   const {
     data: vacancies = [],
     isLoading,
     isFetching,
     error,
-  } = useGetVacationsQuery();
-
-  const [page, setPage] = useState(1);
+  } = useGetVacationsQuery({
+    page: 0,
+    per_page: PER_PAGE * page,
+  });
 
   const [positionForm, setPositionForm] = useState(false);
   const [sortByType, setSortByType] = useState({
@@ -60,6 +64,9 @@ const JobList = () => {
         ) : (
           <NotFoundBlock />
         )}
+        <button className="button" onClick={() => setPage((prev) => prev + 1)}>
+          Смотреть еще...
+        </button>
       </section>
     </>
   );
