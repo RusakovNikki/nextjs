@@ -1,22 +1,40 @@
-import Parser from "html-react-parser";
+"use client";
 
+import Parser from "html-react-parser";
+import { IVacancy } from "@/interfaces/vacancy";
 import preview from "/public/preview_company.svg";
 import { useState } from "react";
 import { useGetVacancyQuery } from "@/store/api/headHunter";
 
-const JobBlock = ({ id }) => {
-  const { data: vacancy } = useGetVacancyQuery(id, {
-    skip: !id,
+interface IJobBlockWithVacancyProps {
+  vacancy: IVacancy;
+  vacancyId?: never;
+}
+
+interface IJobBlockWithVacancyIdProps {
+  vacancyId: number;
+  vacancy?: never;
+}
+
+type TJobBlockProps = IJobBlockWithVacancyProps | IJobBlockWithVacancyIdProps;
+
+const JobBlock = (props: TJobBlockProps) => {
+  const { vacancy, vacancyId } = props;
+
+  const { data: vacancyRequestData } = useGetVacancyQuery(vacancyId!, {
+    skip: !vacancyId && Boolean(vacancy),
   });
+
+  const vacancyData = vacancy || vacancyRequestData;
 
   const [showMoreDesc, setShowMoreDesc] = useState(true);
 
   const { employer, schedule, area, name, description, alternate_url } =
-    vacancy || {};
+    vacancyData || {};
 
   return (
     <>
-      {vacancy && (
+      {vacancyData && (
         <div className="jobs-container__item">
           <div className="jobs-container__flex-item">
             <div className="jobs-container__logo-container">
@@ -59,7 +77,7 @@ const JobBlock = ({ id }) => {
                   showMoreDesc ? "jobs-container__specifics--height" : ""
                 } roboto`}
               >
-                {Parser(String(description))}
+                {Parser(String(description || ""))}
               </div>
             </div>
             <div

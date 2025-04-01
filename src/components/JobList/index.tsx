@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useGetVacationsQuery } from "@/store/api/headHunter";
 import JobBlock from "../JobBlock";
 import { useDebounce } from "@/hooks/useDebounce";
+import Modal from "../Modal";
 
 const PER_PAGE = 10;
 
@@ -33,6 +34,8 @@ const JobList = () => {
   });
 
   const [positionForm, setPositionForm] = useState(false);
+
+  const [qqq, setQQQ] = useState(true);
 
   return (
     <>
@@ -61,7 +64,7 @@ const JobList = () => {
       <section className="jobs-container">
         {vacancies.length ? (
           vacancies.map((vacancy) => {
-            return <JobBlock key={vacancy.id} id={vacancy.id} />;
+            return <JobBlock key={vacancy.id} vacancy={vacancy} />;
           })
         ) : (
           <NotFoundBlock />
@@ -70,6 +73,7 @@ const JobList = () => {
           Смотреть еще...
         </button>
       </section>
+      <Modal children={<></>} isOpen={qqq} onClose={() => setQQQ(false)} />
     </>
   );
 };
