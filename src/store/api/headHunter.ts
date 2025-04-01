@@ -6,13 +6,7 @@ export const headHunterApi = createApi({
   tagTypes: ["headHunter"],
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.hh.ru" }),
   endpoints: (builder) => ({
-    getVacations: builder.query<
-      IVacancy[],
-      void | {
-        page: number;
-        per_page: number;
-      }
-    >({
+    getVacations: builder.query<IVacancy[], void | Record<string, any>>({
       query: (params) => ({
         url: "/vacancies",
         params: params || {},

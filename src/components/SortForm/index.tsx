@@ -46,13 +46,12 @@ const SortForm = (props: ISortForm) => {
       {positionForm && (
         <ul
           className="header__ul"
-          onClick={(event) =>
-            // setSortByType({
-            //   ...sortByType,
-            //   nameSort: e.target.innerHTML,
-            //   sortBy: e.target.getAttribute("value"),
-            // })
-            {}
+          onClick={(event: any) =>
+            setSortByType({
+              ...sortByType,
+              nameSort: event.target.innerHTML,
+              sortBy: event.target.getAttribute("value"),
+            })
           }
         >
           <li value="fullDay">Полный день</li>

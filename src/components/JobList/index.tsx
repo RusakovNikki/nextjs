@@ -8,29 +8,31 @@ import btnClose from "/public/close-btn.svg";
 import Image from "next/image";
 import { useGetVacationsQuery } from "@/store/api/headHunter";
 import JobBlock from "../JobBlock";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const PER_PAGE = 10;
 
 const JobList = () => {
   const [page, setPage] = useState(1);
-  const {
-    data: vacancies = [],
-    isLoading,
-    isFetching,
-    error,
-  } = useGetVacationsQuery({
-    page: 0,
-    per_page: PER_PAGE * page,
-  });
 
-  const [positionForm, setPositionForm] = useState(false);
   const [sortByType, setSortByType] = useState({
     nameSort: "",
     sortBy: "",
     searchByPosition: "",
   });
 
-  console.log(vacancies);
+  const text = useDebounce(sortByType.searchByPosition, 500);
+
+  const { data: vacancies = [] } = useGetVacationsQuery({
+    page: 0,
+    per_page: PER_PAGE * page,
+    ...(sortByType.sortBy && { schedule: sortByType.sortBy }),
+    ...(sortByType.searchByPosition && {
+      text,
+    }),
+  });
+
+  const [positionForm, setPositionForm] = useState(false);
 
   return (
     <>
@@ -48,11 +50,11 @@ const JobList = () => {
             setSortByType({ nameSort: "", sortBy: "", searchByPosition: "" })
           }
         >
-          <label htmlFor="#close" className="header__title-clear formular">
+          <label htmlFor="close" className="header__title-clear formular">
             Clear sorting
           </label>
           <span className="header__close-btn">
-            <Image src={btnClose} alt="" id="#close" />
+            <Image src={btnClose} alt="" id="close" />
           </span>
         </div>
       </div>
