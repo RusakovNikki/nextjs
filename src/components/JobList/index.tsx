@@ -1,46 +1,32 @@
 "use client";
 
-import useJobFilter from "@/hooks/useJobFilter";
 import { useState } from "react";
 import NotFoundBlock from "@/components/NotFoundBlock";
 import SortForm from "../SortForm";
 import SortPosition from "../SortPosition";
 import btnClose from "/public/close-btn.svg";
 import Image from "next/image";
+import { useGetVacationsQuery } from "@/store/api/headHunter";
+import JobBlock from "../JobBlock";
 
 const JobList = () => {
-  const URL = `https://api.hh.ru/vacancies`;
-  const countElementsOnPage = 5;
+  const {
+    data: vacancies = [],
+    isLoading,
+    isFetching,
+    error,
+  } = useGetVacationsQuery();
 
   const [page, setPage] = useState(1);
-  const [items, isLoading, jobItems] = useJobFilter({
-    URL,
-    sortByType: { searchByPosition: "", sortBy: "" },
-  });
 
-  // useEffect(() => {
-  //   setPage(1);
-  // }, [sortByType]);
-
-  const jobsFiltered = jobItems?.filter(
-    (_, index) => index < countElementsOnPage * page
-  );
-
-  const chowJobsFiltred = jobsFiltered.length ? (
-    jobsFiltered
-  ) : (
-    <NotFoundBlock />
-  );
-  const countPajeFilt = Boolean(
-    Math.floor(jobsFiltered.length / countElementsOnPage)
-  );
-  const maxCountPage = items.length / countElementsOnPage;
   const [positionForm, setPositionForm] = useState(false);
   const [sortByType, setSortByType] = useState({
     nameSort: "",
     sortBy: "",
     searchByPosition: "",
   });
+
+  console.log(vacancies);
 
   return (
     <>
@@ -67,11 +53,12 @@ const JobList = () => {
         </div>
       </div>
       <section className="jobs-container">
-        {chowJobsFiltred}
-        {page < maxCountPage && countPajeFilt && (
-          <button className="button" onClick={() => setPage((prev) => ++prev)}>
-            Смотреть еще...
-          </button>
+        {vacancies.length ? (
+          vacancies.map((vacancy) => {
+            return <JobBlock key={vacancy.id} id={vacancy.id} />;
+          })
+        ) : (
+          <NotFoundBlock />
         )}
       </section>
     </>

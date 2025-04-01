@@ -25,15 +25,16 @@ const SortForm = (props: ISortForm) => {
       className="sortby__form form-item"
       onClick={() => setPositionForm((prev) => !prev)}
     >
-      <label htmlFor="#text" className="form-item__title rubik-regular">
+      <label htmlFor="text" className="form-item__title rubik-regular">
         Form
       </label>
       <input
-        id="#text"
+        id="text"
         value={sortByType.nameSort}
         type="text"
         placeholder="Not selected"
         className="form-item__field rubik-regular"
+        onChange={() => {}}
       />
       <div
         className={`header__show-btn ${

@@ -21,11 +21,11 @@ const FooterRequestForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-item footer__form">
-        <label htmlFor="#name" className="form-item__title rubik-regular">
+        <label htmlFor="name" className="form-item__title rubik-regular">
           Your name
         </label>
         <input
-          id="#name"
+          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           name="name"
@@ -36,11 +36,11 @@ const FooterRequestForm = () => {
         />
       </div>
       <div className="form-item footer__form">
-        <label htmlFor="#email" className="form-item__title rubik-regular">
+        <label htmlFor="email" className="form-item__title rubik-regular">
           Email
         </label>
         <input
-          id="#email"
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           name="email"
@@ -51,13 +51,13 @@ const FooterRequestForm = () => {
         />
       </div>
       <div className="form-item footer__form">
-        <label htmlFor="#phone" className="form-item__title  rubik-regular">
+        <label htmlFor="phone" className="form-item__title  rubik-regular">
           Phone number
         </label>
         <input
           className="form-item__field rubik-regular"
           placeholder="+7(999) 999 9999"
-          id="#phone"
+          id="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />

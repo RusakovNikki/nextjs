@@ -2,20 +2,21 @@ import Parser from "html-react-parser";
 
 import preview from "/public/preview_company.svg";
 import { useState } from "react";
-import useProducts from "@/hooks/useProducts";
+import { useGetVacancyQuery } from "@/store/api/headHunter";
 
 const JobBlock = ({ id }) => {
+  const { data: vacancy } = useGetVacancyQuery(id, {
+    skip: !id,
+  });
+
   const [showMoreDesc, setShowMoreDesc] = useState(true);
 
-  const URL_EMPLOYER = `https://api.hh.ru/vacancies/${id}`;
-  
-  const [item] = useProducts(URL_EMPLOYER);
-
-  const { employer, schedule, area, name, description, alternate_url } = item;
+  const { employer, schedule, area, name, description, alternate_url } =
+    vacancy || {};
 
   return (
     <>
-      {item && (
+      {vacancy && (
         <div className="jobs-container__item">
           <div className="jobs-container__flex-item">
             <div className="jobs-container__logo-container">
