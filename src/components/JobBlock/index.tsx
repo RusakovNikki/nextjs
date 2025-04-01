@@ -5,6 +5,7 @@ import { IVacancy } from "@/interfaces/vacancy";
 import preview from "/public/preview_company.svg";
 import { useState } from "react";
 import { useGetVacancyQuery } from "@/store/api/headHunter";
+import { useRouter } from "next/navigation";
 
 interface IJobBlockWithVacancyProps {
   vacancy: IVacancy;
@@ -31,6 +32,8 @@ const JobBlock = (props: TJobBlockProps) => {
 
   const { employer, schedule, area, name, description, alternate_url } =
     vacancyData || {};
+
+  const router = useRouter();
 
   return (
     <>
@@ -82,7 +85,13 @@ const JobBlock = (props: TJobBlockProps) => {
             </div>
             <div
               className="jobs-container__more-btn roboto"
-              onClick={() => setShowMoreDesc((prev) => !prev)}
+              onClick={() => {
+                if (vacancyRequestData && !vacancy) {
+                  setShowMoreDesc((prev) => !prev);
+                } else if (vacancy?.id) {
+                  router.push(vacancy?.id);
+                }
+              }}
             >
               {showMoreDesc ? `more details` : "close"}
             </div>

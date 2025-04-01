@@ -73,7 +73,7 @@ const JobList = () => {
           Смотреть еще...
         </button>
       </section>
-      <Modal children={<></>} isOpen={qqq} onClose={() => setQQQ(false)} />
+      {/* <Modal children={<></>} isOpen={qqq} onClose={() => setQQQ(false)} /> */}
     </>
   );
 };
