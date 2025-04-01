@@ -1,7 +1,10 @@
-import React from "react";
-
 const NotFoundPage = () => {
-  return <div>404</div>;
+  return (
+    <div className="notfound-container">
+      <p className="title rubik-regular">Такая страница не найдена</p>
+      <span className="notfound-container__smile">🤧</span>
+    </div>
+  );
 };
 
 export default NotFoundPage;
